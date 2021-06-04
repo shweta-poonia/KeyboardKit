@@ -64,10 +64,25 @@ struct KeyboardGestures<Content: View>: View {
             Color.clearInteractable
                 .gesture(dragGesture(for: geo))
                 .simultaneousGesture(tapGesture)
-                .simultaneousGesture(doubleTapGesture)
+                .withOptionalGesture(doubleTapGesture)
                 .simultaneousGesture(longPressGesture)
                 .simultaneousGesture(longPressDragGesture(for: geo))
         })
+    }
+}
+
+
+// MARK: - View Extension
+
+private extension View {
+    
+    @ViewBuilder
+    func withOptionalGesture<GestureType: Gesture>(_ gesture: GestureType?) -> some View {
+        if let gesture = gesture {
+            self.gesture(gesture)
+        } else {
+            self
+        }
     }
 }
 
@@ -79,9 +94,10 @@ private extension KeyboardGestures {
     /**
      This is a plain double-tap gesure.
      */
-    var doubleTapGesture: some Gesture {
-        TapGesture(count: 2)
-            .onEnded { doubleTapAction?() }
+    var doubleTapGesture: _EndedGesture<TapGesture>? {
+        guard let action = doubleTapAction else { return nil }
+        return TapGesture(count: 2)
+            .onEnded { action() }
     }
     
     /**

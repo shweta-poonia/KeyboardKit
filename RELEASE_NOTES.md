@@ -11,15 +11,19 @@ Breaking changes can still occur in minor versions, if the alternative is to not
 
 ## 4.5.3
 
-This version adds support for Kurdish Sorani. 
+This version makes it easier to create unicode keyboards.
 
-It's also easier to create unicode keyboards, using the new initializers. 
+This version also changes how double tap gestures are applied, and only applies a gesture if a double tap action is specified.
 
 ### ✨ New features
 
 * `DeviceSpecificInputSetProvider` has a new `row` functions that support lower/uppercase tuples.
 * `KeyboardInput` has a new initializer, where lowercased comes before the uppercased.
-* `KeyboardInputRow` has a new initializer, where you can provide tuples.
+* `KeyboardInputRow` has a new initializer, to which you can provide tuples.
+
+### 💡 Behavior changes
+
+* `KeyboardGestures` only applies double tap gesture if needed.
 
 
 ## 4.5.2

@@ -40,7 +40,7 @@ public extension DeviceSpecificInputSetProvider {
     /**
      This function creates an input row where each character
      tuple is converted to a `KeyboardInput` using the first
-     tuple element as lowercase and the second as uppercase.
+     tuple element as `lowercase` and second as `uppercase`.
      */
     func row(_ chars: [(String, String)]) -> KeyboardInputRow {
         KeyboardInputRow(chars)

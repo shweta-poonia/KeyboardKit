@@ -32,7 +32,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = ivc.keyboardContext
         self.keyboardFeedbackHandler = ivc.keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
-            context: ivc.keyboardContext, feedbackHandler: ivc.keyboardFeedbackHandler, sensitivity: spaceDragSensitivity)
+            context: ivc.keyboardContext,
+            feedbackHandler: ivc.keyboardFeedbackHandler,
+            sensitivity: spaceDragSensitivity)
     }
     
     public init(
@@ -51,7 +53,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.keyboardContext = keyboardContext
         self.keyboardFeedbackHandler = keyboardFeedbackHandler
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? SpaceCursorDragGestureHandler(
-            context: keyboardContext, feedbackHandler: keyboardFeedbackHandler, sensitivity: spaceDragSensitivity)
+            context: keyboardContext,
+            feedbackHandler: keyboardFeedbackHandler,
+            sensitivity: spaceDragSensitivity)
     }
     
     
@@ -81,7 +85,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - KeyboardActionHandler
     
-    public func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
+    open func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
         self.action(for: gesture, on: action) != nil
     }
     
@@ -136,7 +140,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             case let .character(char) = action,
             let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale)
             else { return nil }
-        return KeyboardAction.character(replacement)
+        return .character(replacement)
     }
     
     /**

@@ -33,6 +33,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .finnish: "fi",
                         .german: "de",
                         .italian: "it",
+                        .kurdish_sorani: "ckb",
                         .norwegian: "nb",
                         .spanish: "es",
                         .swedish: "sv"
@@ -76,6 +77,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .french: "français",
                         .german: "Deutsch",
                         .italian: "italiano",
+                        .kurdish_sorani: "کوردیی ناوەندی",
                         .norwegian: "norsk bokmål",
                         .spanish: "español",
                         .swedish: "svenska"
@@ -100,6 +102,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .french: "🇫🇷",
                         .german: "🇩🇪",
                         .italian: "🇮🇹",
+                        .kurdish_sorani: "🇹🇯",
                         .norwegian: "🇳🇴",
                         .spanish: "🇪🇸",
                         .swedish: "🇸🇪"
@@ -124,6 +127,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .french: true,
                         .german: true,
                         .italian: true,
+                        .kurdish_sorani: false,
                         .norwegian: true,
                         .spanish: true,
                         .swedish: true
@@ -148,6 +152,7 @@ class KeyboardLocaleTests: QuickSpec {
                         .french: true,
                         .german: true,
                         .italian: true,
+                        .kurdish_sorani: true,
                         .norwegian: true,
                         .spanish: true,
                         .swedish: true
@@ -161,39 +166,13 @@ class KeyboardLocaleTests: QuickSpec {
             it("is sorted by localized name") {
                 let locales = KeyboardLocale.allCases.sorted()
                 let names = locales.map { $0.localizedName.capitalized }
-                expect(names).to(equal([
-                    "Dansk",
-                    "Deutsch",
-                    "English",
-                    "English (United Kingdom)",
-                    "English (United States)",
-                    "Español",
-                    "Français",
-                    "Italiano",
-                    "Nederlands",
-                    "Norsk Bokmål",
-                    "Suomi",
-                    "Svenska"
-                ]))
+                expect(names.first).to(equal("Dansk"))
             }
             
             it("can insert an existing locale firstmost") {
                 let locales = KeyboardLocale.allCases.sorted(insertFirst: .english)
                 let names = locales.map { $0.localizedName.capitalized }
-                expect(names).to(equal([
-                    "English",
-                    "Dansk",
-                    "Deutsch",
-                    "English (United Kingdom)",
-                    "English (United States)",
-                    "Español",
-                    "Français",
-                    "Italiano",
-                    "Nederlands",
-                    "Norsk Bokmål",
-                    "Suomi",
-                    "Svenska"
-                ]))
+                expect(names.first).to(equal("English"))
             }
         }
     }

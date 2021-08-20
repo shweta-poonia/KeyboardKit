@@ -135,7 +135,7 @@ private extension KeyboardAction {
         case .emoji(let emoji): return emoji.char
         case .emojiCategory(let category): return buttonText(for: category)
         case .keyboardType(let type): return buttonText(for: type)
-        case .newLine: return "return"
+        case .return: return "return"
         case .shift(let currentState): return currentState.isUppercased ? "⇪" : "⇧"
         case .space: return "space"
         default: return nil

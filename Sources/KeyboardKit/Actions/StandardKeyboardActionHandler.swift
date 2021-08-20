@@ -172,7 +172,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      performed on the provided `action`.
      */
     open func tryChangeKeyboardType(after gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
+       // guard
+        if keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) { return }
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         changeKeyboardTypeAction(newType)
     }

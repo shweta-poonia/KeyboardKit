@@ -140,7 +140,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             case let .character(char) = action,
             let replacement = textDocumentProxy.preferredReplacement(for: char, locale: keyboardContext.locale)
             else { return nil }
-        return .character(replacement)
+        return .character(String(replacement))
     }
     
     /**
@@ -161,7 +161,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      before the `gesture` has been performed on the `action`.
      */
     open func tryApplyAutocompleteSuggestion(before gesture: KeyboardGesture, on action: KeyboardAction) {
-        guard gesture == .tap else { return }
+        guard
+    gesture == .tap else { return }
         guard action.shouldApplyAutocompleteSuggestion else { return }
         guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocomplete }) else { return }
         textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
